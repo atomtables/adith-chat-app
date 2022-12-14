@@ -2,12 +2,12 @@ import {useEffect, useState} from "react"
 import {useRouter} from "next/router"
 import {E, updateState} from "/utils/state"
 import "focus-visible/dist/focus-visible"
-import {Button, HStack, Text} from "@chakra-ui/react"
+import {Button, HStack, Heading} from "@chakra-ui/react"
 import NextHead from "next/head"
 
 const EVENT = "http://localhost:8000/event"
 export default function Component() {
-const [state, setState] = useState({"my_string": "hello world", "events": [{"name": "state.hydrate"}]})
+const [state, setState] = useState({"count": 0, "events": [{"name": "state.hydrate"}]})
 const [result, setResult] = useState({"state": null, "events": [], "processing": false})
 const router = useRouter()
 const Event = events => setState({
@@ -33,10 +33,16 @@ useEffect(() => {
 })
 return (
 <HStack>
-<Text sx={{"fontSize": "2em"}}>
-{state.my_string}</Text>
-<Button>
-{`Hello`}</Button>
+<Button colorScheme="red"
+onClick={() => Event([E("state.decrement", {})])}
+sx={{"borderRadius": "1em"}}>
+{`Decrement`}</Button>
+<Heading sx={{"fontSize": "2em"}}>
+{state.count}</Heading>
+<Button colorScheme="green"
+onClick={() => Event([E("state.increment", {})])}
+sx={{"borderRadius": "1em"}}>
+{`Increment`}</Button>
 <NextHead>
 <title>{`Pynecone App`}</title>
 <meta name="description"

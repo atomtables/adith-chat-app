@@ -2,17 +2,32 @@ import pynecone as pc
 
 
 class State(pc.State):
-    my_string = "deez nuts"
-    def onCreateDisWork():
-        pc.createElement(heading, "hello")
+    count: int = 0
+
+    def increment(self):
+        self.count += 1
+        print("incremented")
+
+    def decrement(self):
+        self.count -= 1
+        print("decremented")
+
 
 def index():
-    return pc.center(
-        pc.heading(State.my_string),
-        pc.spacer(),
-        pc.heading("This is my python webpage"),
-        pc.button("button", onclick=State.onCreateDisWork)
-        
+    return pc.hstack(
+        pc.button(
+            "Decrement",
+            color_scheme="red",
+            border_radius="1em",
+            on_click=State.decrement,
+        ),
+        pc.heading(State.count, font_size="2em"),
+        pc.button(
+            "Increment",
+            color_scheme="green",
+            border_radius="1em",
+            on_click=State.increment,
+        ),
     )
 
 
