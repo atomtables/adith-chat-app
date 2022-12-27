@@ -2,8 +2,7 @@ import {useEffect, useState} from "react"
 import {useRouter} from "next/router"
 import {E, updateState} from "/utils/state"
 import "focus-visible/dist/focus-visible"
-import {Box, Button, HStack, Link, Spacer, Text} from "@chakra-ui/react"
-import NextLink from "next/link"
+import {Box, Button, Center, Divider, HStack, Heading, Input, VStack} from "@chakra-ui/react"
 import NextHead from "next/head"
 
 const EVENT = "http://localhost:8000/event"
@@ -33,24 +32,26 @@ useEffect(() => {
   update()
 })
 return (
-<Box onFocus={() => Event([E("state.reset_all_button", {})])}>
-<Box sx={{"bg": "#99ff9e"}}>
-<HStack sx={{"padding": "1"}}>
-<Text as="strong">
-{`adith's Chat App`}</Text>
-<Spacer/>
 <Box>
-<HStack>
-<NextLink href="/log-in"
-passHref={true}>
-<Link sx={{"button": true}}>
-{state.log_in_button ? <Button isLoading={true}
-sx={{"bg": "#98ebf5"}}>
-{`Log in`}</Button> : <Button onClick={() => Event([E("state.flip_log_in_button", {})])}
-sx={{"bg": "#98ebf5"}}>
-{`Log in`}</Button>}</Link></NextLink></HStack></Box></HStack></Box>
+<Center sx={{"width": "100%", "height": "100vh", "background": "radial-gradient(circle at 22% 11%,rgba(150, 175, 217,0.25),hsla(0,0%,100%,0) 19%),radial-gradient(circle at 82% 25%,rgba(174, 242, 232,1),hsla(0,0%,100%,0) 35%),radial-gradient(circle at 25% 61%,rgba(209, 237, 202, 1),hsla(0,0%,100%,0) 55%)"}}>
+<VStack sx={{"bg": "white", "padding": "2em", "shadow": "lg", "borderRadius": "lg"}}>
+<Heading sx={{"fontSize": "1.5em"}}>
+{`adith's chat app`}</Heading>
+<HStack sx={{"width": "100%"}}>
+<Input placeholder="Username"
+type="text"
+onChange={(_e) => Event([E("state.set_log_in_username", {value:_e.target.value})])}
+sx={{"width": "100%"}}/>
+<Input placeholder="Password"
+type="password"
+onChange={(_e) => Event([E("state.set_log_in_password", {value:_e.target.value})])}
+sx={{"width": "100%"}}/></HStack>
+<Button onClick={() => Event([E("state.log_in_on_click", {})])}
+sx={{"width": "100%"}}>
+{`Log In`}</Button>
+<Divider/></VStack></Center>
 <NextHead>
-<title>{`adith's Chat App`}</title>
+<title>{`adith's Chat App: Log in`}</title>
 <meta name="description"
 content="favicon.ico"/>
 <meta content="A Pynecone app."

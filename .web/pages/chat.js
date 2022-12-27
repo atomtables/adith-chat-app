@@ -50,7 +50,7 @@ sx={{"bg": "#98ebf5"}}>
 sx={{"bg": "#98ebf5"}}>
 {`Log in`}</Button>}</Link></NextLink></HStack></Box></HStack></Box>
 <NextHead>
-<title>{`adith's Chat App`}</title>
+<title>{`Pynecone App`}</title>
 <meta name="description"
 content="favicon.ico"/>
 <meta content="A Pynecone app."
