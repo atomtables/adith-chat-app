@@ -8,7 +8,7 @@ import NextHead from "next/head"
 
 const EVENT = "http://localhost:8000/event"
 export default function Component() {
-const [state, setState] = useState({"log_in": false, "log_in_button": false, "log_in_password": "", "log_in_username": "", "sign_up_button": false, "events": [{"name": "state.hydrate"}]})
+const [state, setState] = useState({"current_buffered_message": "", "logged_in": false, "messages": ["Write Code", "Sleep", "Have Fun"], "username": "", "events": [{"name": "state.hydrate"}]})
 const [result, setResult] = useState({"state": null, "events": [], "processing": false})
 const router = useRouter()
 const Event = events => setState({
@@ -33,26 +33,27 @@ useEffect(() => {
   update()
 })
 return (
-<Box onFocus={() => Event([E("state.reset_all_button", {})])}>
+<Box>
 <Box sx={{"bg": "#99ff9e"}}>
 <HStack sx={{"padding": "1"}}>
 <Text as="strong">
-{`adith's Chat App`}</Text>
+{`AtomChat Online`}</Text>
 <Spacer/>
 <Box>
 <HStack>
-<NextLink href="/log-in"
-passHref={true}>
+<Button isDisabled={true}
+sx={{"bg": "lightgreen", "color": "black"}}>
+{state.username}</Button>
+<NextLink passHref={true}
+href="/log-in">
 <Link sx={{"button": true}}>
-{state.log_in_button ? <Button isLoading={true}
-sx={{"bg": "#98ebf5"}}>
-{`Log in`}</Button> : <Button onClick={() => Event([E("state.flip_log_in_button", {})])}
-sx={{"bg": "#98ebf5"}}>
-{`Log in`}</Button>}</Link></NextLink></HStack></Box></HStack></Box>
+<Button onClick={() => Event([E("state.on_log_out", {})])}
+sx={{"width": "100%"}}>
+{`Log Out`}</Button></Link></NextLink></HStack></Box></HStack></Box>
 <NextHead>
-<title>{`Pynecone App`}</title>
-<meta name="description"
-content="favicon.ico"/>
+<title>{`Chat | AtomChat Online`}</title>
+<meta content="favicon.ico"
+name="description"/>
 <meta content="A Pynecone app."
 property="og:image"/></NextHead></Box>
 )
